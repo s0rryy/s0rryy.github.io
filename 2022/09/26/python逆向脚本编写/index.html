@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="s0rry的博客"><title>python逆向脚本编写 | s0rry's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">python逆向脚本编写</h1><a id="logo" href="/.">s0rry's Blog</a><p class="description">学会一项技能只需要20小时</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/link/"><i class="fa fa-link"> 友链</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">python逆向脚本编写</h1><div class="post-meta">2022-09-26<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 2.9k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 11</span><span class="post-meta-item-text"> 分钟</span></span></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">python的数据处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#idc%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99"><span class="toc-number">2.</span> <span class="toc-text">idc脚本编写</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AEapi"><span class="toc-number">2.1.</span> <span class="toc-text">读取数据api</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%BD%93%E5%89%8D%E5%85%89%E6%A0%87%E4%BA%A4%E4%BA%92"><span class="toc-number">2.2.</span> <span class="toc-text">与当前光标交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E6%B1%87%E7%BC%96%E8%A1%8C%E7%BB%84%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text">反汇编行组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AE%B5%E6%93%8D%E4%BD%9C"><span class="toc-number">2.4.</span> <span class="toc-text">段操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="toc-number">2.5.</span> <span class="toc-text">函数操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.6.</span> <span class="toc-text">数据查询</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">python正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#re%E6%A8%A1%E5%9D%97%E6%9C%8912%E4%B8%AA%E5%87%BD%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">re模块有12个函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#flag%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.1.</span> <span class="toc-text">flag参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9F%A5%E6%89%BE%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9"><span class="toc-number">3.1.2.</span> <span class="toc-text">1.查找一个匹配项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9F%A5%E6%89%BE%E5%A4%9A%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9"><span class="toc-number">3.1.3.</span> <span class="toc-text">2.查找多个匹配项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%86%E5%89%B2"><span class="toc-number">3.1.4.</span> <span class="toc-text">3.分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9B%BF%E6%8D%A2"><span class="toc-number">3.1.5.</span> <span class="toc-text">4.替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%BC%96%E8%AF%91%E6%AD%A3%E5%88%99%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.1.6.</span> <span class="toc-text">5.编译正则对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%85%B6%E4%BB%96"><span class="toc-number">3.1.7.</span> <span class="toc-text">6.其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E7%AC%A6%E5%8F%B7"><span class="toc-number">3.2.</span> <span class="toc-text">正则符号</span></a></li></ol></li></ol></div></div><div class="post-content"><p>最近经常遇见混淆，需要写脚本来去，写的过程中发现总是忘这忘那的，要现搜才能抠出脚本来，比较低效，所以对这些常常的短路的点做了简单集中的记录，便于用到的时候查找，可能有有些地方写的比较简单，如果有看不懂的地方，可以去最后给的链接中查看详细的介绍。</p>
+<h1 id="python的数据处理"><a href="#python的数据处理" class="headerlink" title="python的数据处理"></a>python的数据处理</h1><p>在逆向中，由于python的弱数据类型，在调库时带来了许多不便，这里我规定自己一直用byte类型来作为使用时主要的类型，其他类型则通过byte类型来转换，下面介绍相关的转换方法</p>
+<p>string是Unicode，由str类型表示，二进制数据则由bytes类型表示。</p>
+<ul>
+<li>byte→string</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = b<span class="string">&quot;asdfg\n&quot;</span></span><br><span class="line">str = <span class="title function_">str</span>(b,encoding = <span class="string">&quot;utf-8&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>string→byte</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">&quot;s0rry&quot;</span></span><br><span class="line">b = <span class="title function_">bytes</span>(str,encoding = <span class="string">&quot;utf-8&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>byte→hex的str类型</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = b<span class="string">&quot;s0rry&quot;</span></span><br><span class="line">h = b.<span class="title function_">hex</span>()</span><br><span class="line"># <span class="attr">h</span>: <span class="language-xml"><span class="tag">&lt;<span class="name">class</span> &#x27;<span class="attr">str</span>&#x27;&gt;</span> &#x27;73616461736471&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>hex的str类型→byte</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h = <span class="string">&quot;73616461736471&quot;</span></span><br><span class="line">bb = bytes.<span class="title function_">fromhex</span>(h)</span><br><span class="line"># <span class="attr">bb</span>: <span class="language-xml"><span class="tag">&lt;<span class="name">class</span> &#x27;<span class="attr">bytes</span>&#x27;&gt;</span> b&#x27;sadasdq&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>长整型→byte</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#方法一</span></span><br><span class="line">i = <span class="number">6788912312</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;%020x&quot;</span> % i</span><br><span class="line">he = <span class="built_in">hex</span>(i)</span><br><span class="line">b = <span class="built_in">bytes</span>.fromhex(<span class="built_in">str</span>)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line">i = <span class="number">6788912312</span></span><br><span class="line">b = i.to_bytes(<span class="built_in">len</span>(<span class="built_in">str</span>(i))//<span class="number">2</span>+<span class="number">1</span>,byteorder=<span class="string">&quot;big&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>byte→长整型</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ii = int.<span class="title function_">from_bytes</span>(b ,byteorder=<span class="string">&quot;big&quot;</span>)</span><br><span class="line"><span class="title function_">print</span>(ii)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>list→byte</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">b = <span class="built_in">bytes</span>(l)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>byte→list</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b =  <span class="string">b&#x27;\x01\x03-\x06&#x27;</span></span><br><span class="line">ll = <span class="built_in">list</span>(b)</span><br></pre></td></tr></table></figure>
+
+<h1 id="idc脚本编写"><a href="#idc脚本编写" class="headerlink" title="idc脚本编写"></a>idc脚本编写</h1><h2 id="读取数据api"><a href="#读取数据api" class="headerlink" title="读取数据api"></a>读取数据api</h2><p><code>idc.get_wide_byte(addr)</code>，从addr处读取一个字节值</p>
+<p><code>idc.get_wide_word(addr)</code>，从addr处读取一个字（2字节）值</p>
+<p><code>idc.get_wide_dword(addr)</code>，从addr处读取一个双字（4字节）值</p>
+<p><code>idc.get_qword(addr)</code>，从addr处读取一个四字（8字节）值</p>
+<p><code>ida_bytes.patch_byte(addr,byte)</code>，设置addr处的一个字节值</p>
+<p><code>ida_bytes.patch_word(addr,word)</code>，设置addr处的一个字值</p>
+<p><code>ida_bytes.patch_dword(addr,dword)</code>，设置addr处的一个双字值</p>
+<p><code>ida_bytes.patch_qword(addr,qword)</code>，设置addr处的一个四字值</p>
+<p><code>ida_bytes.is_loaded(addr)</code>，如果addr包含有效数据，则返回1，否则返回0</p>
+<h2 id="与当前光标交互"><a href="#与当前光标交互" class="headerlink" title="与当前光标交互"></a>与当前光标交互</h2><p><code>idc.here() 或 idc.get_screen_ea()</code>，取当前地址</p>
+<p><code>ida_ida.inf_get_min_ea()</code>，获取最小地址（可以使用的）（基址）</p>
+<p><code>ida_ida.inf_get_max_ea()</code>，获取最大地址（可以使用的）</p>
+<p><code>idc.read_selection_start()</code>，获取所选范围的起始地址</p>
+<p><code>idc.read_selection_end()</code>，获取光标所选范围的结束地址</p>
+<h2 id="反汇编行组件"><a href="#反汇编行组件" class="headerlink" title="反汇编行组件"></a><strong><strong>反汇编行组件</strong></strong></h2><p><code>idc.GetDisasm(addr) 或 idc.generate_disasm_line(addr,flags)</code>，返回地址处的汇编，flag填个0就</p>
+<p>行</p>
+<p><code>idc.print_insn_mnem(ea)</code>，获取汇编操作指令（如mov、add）</p>
+<p><code>idc.print_operand(ea,index)</code>，返回反汇编窗口中目标地址的操作数的<code>文本形式</code>（汇编指令的形</p>
+<p>式），index为操作数编号从0开始。</p>
+<p><code>idc.get_operand_type(ea,index)</code>，返回一个整数，指出给定地址的给定操作数的类型</p>
+<p><code>idc.get_operand_value(ea,index)</code>，获取指定索引操作数中的值: 如 calll 0x00402004 对应汇编为: FF</p>
+<p> 15 04 20 40 00 其中FF15&#x3D;Call 而操作数的值则为04 20 40 00 (小端) 使用函数之后获取则为地址00402004</p>
+<p><code>idc.next_head(addr)</code>，获取下一行汇编地址</p>
+<p><code>idc.prev_head(addr)</code>，获取上一行汇编地址</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> idc</span><br><span class="line"></span><br><span class="line">basic_addr = ida_ida.<span class="title function_">inf_get_min_ea</span>()</span><br><span class="line"><span class="title function_">print</span>(<span class="string">&quot;函数基址：&quot;</span>+<span class="title function_">hex</span>(basic_addr))</span><br><span class="line">addr = <span class="number">0x0403F0D</span></span><br><span class="line">cur_asm = idc.<span class="title class_">GetDisasm</span>(addr)</span><br><span class="line"><span class="title function_">print</span>(<span class="title function_">type</span>(cur_asm),<span class="string">&quot; &quot;</span>,cur_asm)</span><br><span class="line">next_asm = idc.<span class="title class_">GetDisasm</span>(idc.<span class="title function_">next_head</span>(addr))</span><br><span class="line"><span class="title function_">print</span>(<span class="title function_">type</span>(next_asm),<span class="string">&quot; &quot;</span>,next_asm)</span><br><span class="line">prev_asm = idc.<span class="title class_">GetDisasm</span>(idc.<span class="title function_">prev_head</span>(addr))</span><br><span class="line"><span class="title function_">print</span>(<span class="title function_">type</span>(prev_asm),<span class="string">&quot; &quot;</span>,prev_asm)</span><br><span class="line">cur_hex_asm = idc.<span class="title function_">get_operand_value</span>(addr,<span class="number">1</span>)</span><br><span class="line"><span class="title function_">print</span>(<span class="title function_">type</span>(cur_hex_asm),<span class="string">&quot; &quot;</span>,<span class="title function_">hex</span>(cur_hex_asm))</span><br></pre></td></tr></table></figure>
+
+<p>![](D:\Blog\blog\source\python逆向脚本编写 945facdc96444f4cbc21b509199a4ae2\Untitled.png)</p>
+<h2 id="段操作"><a href="#段操作" class="headerlink" title="段操作"></a><strong><strong>段操作</strong></strong></h2><p><code>idc.get_segm_name(addr)</code>，获取段的名字（参数为当前的地址）</p>
+<p><code>idc.get_segm_start(addr)</code>，获取段的开始地址</p>
+<p><code>idc.get_segm_end(addr)</code>，获取段的结束地址</p>
+<p><code>idc.get_first_seg(addr)</code>，获取第一个段</p>
+<p><code>idc.get_next_seg(addr)</code>，获取下一个段</p>
+<p><code>idautils.Segments()</code>，返回一个列表记录所有段的地址</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> idc</span><br><span class="line"><span class="keyword">import</span> idaapi</span><br><span class="line"><span class="keyword">import</span> idautils</span><br><span class="line"></span><br><span class="line">basic_addr = ida_ida.<span class="title function_">inf_get_min_ea</span>()</span><br><span class="line"><span class="title function_">print</span>(<span class="string">&quot;函数基址：&quot;</span>+<span class="title function_">hex</span>(basic_addr),<span class="string">&quot;-----------------------------------------------&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> seg_addr <span class="keyword">in</span> idautils.<span class="title class_">Segments</span>():</span><br><span class="line">    segname = idc.<span class="title function_">get_segm_name</span>(seg_addr)</span><br><span class="line">    segstart = idc.<span class="title function_">get_segm_start</span>(seg_addr)</span><br><span class="line">    segend   = idc.<span class="title function_">get_segm_end</span>(seg_addr)</span><br><span class="line">    <span class="title function_">print</span>(<span class="string">&quot;段名：&quot;</span> + segname + <span class="string">&quot;  起始地址：&quot;</span> + <span class="title function_">hex</span>(segstart) + <span class="string">&quot;  结束地址：&quot;</span> + <span class="title function_">hex</span>(segend))</span><br></pre></td></tr></table></figure>
+
+<p>![](D:\Blog\blog\source\python逆向脚本编写 945facdc96444f4cbc21b509199a4ae2\Untitled 1.png)</p>
+<h2 id="函数操作"><a href="#函数操作" class="headerlink" title="函数操作"></a><strong><strong>函数操作</strong></strong></h2><p><code>idautils.Functions(startaddr,endaddr)</code>，获取指定地址之间的所有函数，如果不给参数就是返回所有的函数地址</p>
+<p><code>idc.get_func_name(addr)</code>，获取指定地址的函数名</p>
+<p><code>get_func_cmt(addr, repeatable)</code> ，repeatable:0&#x2F;1 0是获取常规注释 1是获取重复注释，获取函数的注释</p>
+<p><code>idc.set_func_cmt(ea, cmt, repeatable)</code>，设置函数注释</p>
+<p><code>idc.choose_func(title)</code>，弹出框框要求用户进行选择 参数则是信息</p>
+<p><code>idc.get_func_off_str(addr)</code>，返回: addr 距离函数的偏移形式</p>
+<p><code>idc.find_func_end(addr)</code>，寻找函数结尾,如果函数存在则返回结尾地址,否则返回BADADDR</p>
+<p><code>ida_funcs.set_func_end(ea, newend)</code>，newend:新的结束地址，设置函数结尾</p>
+<p><code>ida_funcs.set_func_start(addr, newstart)</code>，设置函数开头</p>
+<p><code>idc.set_name(ea, name, SN_CHECK)</code>，Ex函数也使用set_name,设置地址处的名字</p>
+<p><code>idc.get_prev_func(ea)</code>，获取首个函数</p>
+<p><code>idc.get_next_func(ea)</code>，获取下一个函数</p>
+<p><code>idc.get_name_ea_simple(fun_name)</code>，返回函数的线性地址（不明白这个是干啥的）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> idc</span><br><span class="line"><span class="keyword">import</span> idaapi</span><br><span class="line"><span class="keyword">import</span> idautils</span><br><span class="line"></span><br><span class="line">basic_addr = ida_ida.<span class="title function_">inf_get_min_ea</span>()</span><br><span class="line"><span class="title function_">print</span>(<span class="string">&quot;函数基址：&quot;</span>+<span class="title function_">hex</span>(basic_addr),<span class="string">&quot;-----------------------------------------------&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> func_addr <span class="keyword">in</span> idautils.<span class="title class_">Functions</span>():</span><br><span class="line">    <span class="title function_">print</span>(<span class="string">&quot;函数首地址：&quot;</span>+<span class="title function_">hex</span>(func_addr)+<span class="string">&quot; 函数名字：&quot;</span>+idc.<span class="title function_">get_func_name</span>(func_addr) )</span><br></pre></td></tr></table></figure>
+
+<p>![](D:\Blog\blog\source\python逆向脚本编写 945facdc96444f4cbc21b509199a4ae2\Untitled 2.png)</p>
+<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a><strong><strong>数据查询</strong></strong></h2><p><code>idc.find_binary(ea, flag, searchstr, radix=16, from_bc695=False)</code>，查找二进制找到返回地址没找到返回-1(BADADDR) 用来去花指令比较好用</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idc.<span class="title function_">find_binary</span>(ea,<span class="variable constant_">SEARCH_DOWN</span>,<span class="string">&#x27;C4 00 C4&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>ida_search.find_data(ea, sflag)</code>，从ea开始寻找下一个数据地址</p>
+<p><code>ida_search.find_code(ea, sflag)</code>，从ea开始寻找下一个代码地址</p>
+<p><code>ida_kernwin.jumpto(ea)</code>，跳转到ea位置</p>
+<p>flags取值：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SEARCH<span class="emphasis">_DOWN 向下搜索</span></span><br><span class="line"><span class="emphasis">SEARCH_UP 向上搜索</span></span><br><span class="line"><span class="emphasis">SEARCH_NEXT 获取下一个找到的对象。</span></span><br><span class="line"><span class="emphasis">SEARCH_CASE 指定大小写敏感度</span></span><br><span class="line"><span class="emphasis">SEARCH_</span>UNICODE 搜索 Unicode 字符串。</span><br></pre></td></tr></table></figure>
+
+<p>参考链接</p>
+<p><a target="_blank" rel="noopener" href="https://hotspurzzz.github.io/2021/11/17/IDA%20Python%20%E5%B8%B8%E7%94%A8API%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">IDA Python 常用API（持续更新） | HotSpurzzZ</a></p>
+<p><a target="_blank" rel="noopener" href="https://hex-rays.com/products/ida/support/ida74_idapython_no_bc695_porting_guide.shtml">Porting from IDAPython 6.x-7.3, to 7.4 (hex-rays.com)</a></p>
+<h1 id="python正则表达式"><a href="#python正则表达式" class="headerlink" title="python正则表达式"></a>python正则表达式</h1><p>原始字符串表示法:</p>
+<p><code>r&quot;\n&quot;</code>表示包含 <code>&#39;\&#39;</code>和 <code>&#39;n&#39;</code>两个字符的字符串，而 <code>&quot;\n&quot;</code>则表示只包含一个换行符的字符串。</p>
+<h2 id="re模块有12个函数"><a href="#re模块有12个函数" class="headerlink" title="re模块有12个函数"></a>re模块有12个函数</h2><h3 id="flag参数"><a href="#flag参数" class="headerlink" title="flag参数"></a>flag参数</h3><p>re模块中的函数可能含有flag参数，flag参数的作用是通用的</p>
+<p><code>re.I</code>	使匹配对大小写不敏感<br><code>re.L</code>	做本地化识别（locale-aware）匹配<br><code>re.M</code>	多行匹配，影响 ^ 和 $<br><code>re.S</code>	使 . 匹配包括换行在内的所有字符<br><code>re.U</code>	根据Unicode字符集解析字符。这个标志影响 \w, \W, \b, \B.<br><code>re.X</code>	该标志通过给予你更灵活的格式以便你将正则表达式写得更易于理解。</p>
+<h3 id="1-查找一个匹配项"><a href="#1-查找一个匹配项" class="headerlink" title="1.查找一个匹配项"></a>1.查找一个匹配项</h3><ul>
+<li><strong><code>search</code>：</strong> 查找任意位置的匹配项</li>
+</ul>
+<p><code>re.match(pattern, string, flags=0)</code></p>
+<ul>
+<li><strong><code>match</code>：</strong> 必须从字符串开头匹配</li>
+<li><strong><code>fullmatch</code>：</strong> 整个字符串与正则完全匹配</li>
+</ul>
+<p><strong>查找 一个匹配项 返回的都是一个匹配对象（Match）</strong></p>
+<h3 id="2-查找多个匹配项"><a href="#2-查找多个匹配项" class="headerlink" title="2.查找多个匹配项"></a>2.查找多个匹配项</h3><ul>
+<li><strong><code>findall</code>：</strong> 从字符串任意位置查找，<strong>返回一个列表</strong></li>
+<li><strong><code>finditer</code><strong>：从字符串任意位置查找，</strong>返回一个迭代器</strong></li>
+</ul>
+<p>列表是一次性生成在内存中，而迭代器是需要使用时一点一点生成出来的，内存使用更优。</p>
+<p>如果可能存在大量的匹配项的话，建议使用<strong>finditer函数</strong></p>
+<h3 id="3-分割"><a href="#3-分割" class="headerlink" title="3.分割"></a>3.分割</h3><ul>
+<li>**<code>re.split(pattern, string, maxsplit=0, flags=0)</code>**函数：</li>
+</ul>
+<p>用 <strong>pattern</strong>分开 string ， <strong>maxsplit</strong>表示最多进行分割次数， <strong>flags</strong>表示模式，就是上面我们讲解的常量！</p>
+<p><code>str.split</code>函数功能简单，不支持正则分割，而<code>re.split</code>支持正则</p>
+<h3 id="4-替换"><a href="#4-替换" class="headerlink" title="4.替换"></a>4.替换</h3><p>替换主要有<strong>sub函数</strong>与 <strong>subn函数:</strong></p>
+<ul>
+<li>**<code>re.sub(pattern, repl, string, count=0, flags=0)</code>**函数参数讲解：</li>
+</ul>
+<p>repl替换掉string中被pattern匹配的字符， count表示最大替换次数，flags表示正则表达式的常量。</p>
+<ul>
+<li><strong><code>re.subn(pattern, repl, string, count=0, flags=0)</code><strong>函数与</strong><code>re.sub</code>函数</strong>功能一致，只不过返回一个元组 (字符串, 替换次数)。</li>
+</ul>
+<h3 id="5-编译正则对象"><a href="#5-编译正则对象" class="headerlink" title="5.编译正则对象"></a>5.编译正则对象</h3><ul>
+<li><strong><code>compile</code>函数</strong>与 <strong><code>template</code>函数</strong>将正则表达式的样式编译为一个 正则表达式对象 （正则对象Pattern），这个对象与re模块有同样的正则函数</li>
+</ul>
+<h3 id="6-其他"><a href="#6-其他" class="headerlink" title="6.其他"></a>6.其他</h3><ul>
+<li><strong><code>re.escape(pattern)</code></strong><br>可以转义正则表达式中具有特殊含义的字符，比如：<code>.</code>或者 <code>*</code></li>
+<li>**<code>re.purge()</code>**函数作用就是清除 <strong>正则表达式缓存</strong></li>
+</ul>
+<h2 id="正则符号"><a href="#正则符号" class="headerlink" title="正则符号"></a>正则符号</h2><p><strong><strong>正则表达式一般趋向于最大长度匹配，就是贪婪模式。</strong></strong></p>
+<p><strong><strong>匹配到结果就好，就少的匹配字符，就是非贪婪模式。</strong></strong></p>
+<p><code>^</code>	匹配字符串的开头<br><code>$</code>	匹配字符串的末尾。<br><code>.</code>	匹配任意字符，除了换行符，当re.DOTALL标记被指定时，则可以匹配包括换行符的任意字符。<br><code>[...]</code>	用来表示一组字符,单独列出：[amk] 匹配 ‘a’，’m’或’k’<br><code>[^...]</code>	不在[]中的字符：[^abc] 匹配除了a,b,c之外的字符。<br><code>re*</code>	匹配0个或多个的表达式。<br><code>re+</code>	匹配1个或多个的表达式。<br><code>re?</code>	匹配0个或1个由前面的正则表达式定义的片段，<strong>非贪婪方式</strong><br><code>re&#123; n&#125;</code>	精确匹配 n 个前面表达式。例如， o{2} 不能匹配 “Bob” 中的 “o”，但是能匹配 “food” 中的两个 o。<br><code>re&#123; n,&#125;</code>	匹配 n 个前面表达式。例如， o{2,} 不能匹配”Bob”中的”o”，但能匹配 “foooood”中的所有 o。”o{1,}” 等价于 “o+”。”o{0,}” 则等价于 “o*”。<br><code>re&#123; n, m&#125;</code>	匹配 n 到 m 次由前面的正则表达式定义的片段，<strong>贪婪方式</strong><br>a| b	匹配a或b<br><code>(re)</code>	对正则表达式分组并记住匹配的文本<br><code>(?imx)</code>	正则表达式包含三种可选标志：i, m, 或 x 。只影响括号中的区域。<br><code>(?-imx)</code>	正则表达式关闭 i, m, 或 x 可选标志。只影响括号中的区域。<br><code>(?: re)</code>	类似 (…), 但是不表示一个组<br><code>(?imx: re)</code> 在括号中使用i, m, 或 x 可选标志<br><code>(?-imx: re)</code>	在括号中不使用i, m, 或 x 可选标志<br><code>(?#...)</code>	注释.<br><code>(?= re)</code>	前向肯定界定符。如果所含正则表达式，以 … 表示，在当前位置成功匹配时成功，否则失败。但一旦所含表达式已经尝试，匹配引擎根本没有提高；模式的剩余部分还要尝试界定符的右边。<br><code>(?! re)</code>	前向否定界定符。与肯定界定符相反；当所含表达式不能在字符串当前位置匹配时成功<br><code>(?&gt; re)</code>	匹配的独立模式，省去回溯。<br><code>\w</code>	匹配字母数字及下划线<br><code>\W</code>	匹配非字母数字及下划线<br><code>\s</code>	匹配任意空白字符，等价于 [ \t\n\r\f]。<br><code>\S</code>	匹配任意非空字符<br><code>\d</code>	匹配任意数字，等价于 [0-9].<br><code>\D</code>	匹配任意非数字<br><code>\A</code>	匹配字符串开始<br><code>\Z</code>	匹配字符串结束，如果是存在换行，只匹配到换行前的结束字符串。<br><code>\z</code>	匹配字符串结束<br><code>\G</code>	匹配最后匹配完成的位置。<br><code>\b</code>	匹配一个单词边界，也就是指单词和空格间的位置。例如， ‘er\b’ 可以匹配”never” 中的 ‘er’，但不能匹配 “verb” 中的 ‘er’。<br><code>\B</code>	匹配非单词边界。’er\B’ 能匹配 “verb” 中的 ‘er’，但不能匹配 “never” 中的 ‘er’。<br><code>\n, \t</code>, 等.	匹配一个换行符。匹配一个制表符。等<br><code>\1...\9</code>	匹配第n个分组的内容。<br><code>\10</code>	匹配第n个分组的内容，如果它经匹配。否则指的是八进制字符码的表达式。</p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>python逆向脚本编写</p><p><span>文章作者：</span>s0rry</p><p><span>发布时间：</span>2022-09-26</p><p><span>最后更新：</span>2022-09-26</p><p><span>原始链接：</span><a href="/2022/09/26/python逆向脚本编写/">https://s0rryy.github.io/2022/09/26/python%E9%80%86%E5%90%91%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://s0rryy.github.io/2022/09/26/python%E9%80%86%E5%90%91%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99/"></i></span></p><p><span>版权声明：</span>本作品采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">「署名-非商业性使用-相同方式共享 4.0 国际」</a>许可协议进行许可</p></div><br><div class="tags"></div><div class="post-nav"><a class="next" href="/2022/09/15/010%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">010逆向分析</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://s0rryy.github.io"/></form></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img src="/img/avatar.png"/></a><p>s0rry</p><a class="info-icon" href="s0rry.suyy@qq.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/s0rryy" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/skill/" style="font-size: 15px;">skill</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/09/26/python%E9%80%86%E5%90%91%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99/">python逆向脚本编写</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/15/010%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">010逆向分析</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">s0rry's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
