@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://s0rryy.github.io/links/index.html</loc>
+    <loc>https://s0rryy.github.io/2022/09/26/python%E9%80%86%E5%90%91%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99/</loc>
     
-    <lastmod>2022-09-26</lastmod>
+    <lastmod>2022-10-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://s0rryy.github.io/2022/09/26/python%E9%80%86%E5%90%91%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99/</loc>
+    <loc>https://s0rryy.github.io/links/index.html</loc>
     
     <lastmod>2022-09-26</lastmod>
     
@@ -40,7 +40,7 @@
 
   <url>
     <loc>https://s0rryy.github.io/</loc>
-    <lastmod>2022-09-26</lastmod>
+    <lastmod>2022-10-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -48,7 +48,7 @@
   
   <url>
     <loc>https://s0rryy.github.io/tags/skill/</loc>
-    <lastmod>2022-09-26</lastmod>
+    <lastmod>2022-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
