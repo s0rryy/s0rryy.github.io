@@ -3,34 +3,92 @@ layout: ../layouts/FriendsLayout.astro
 title: "Friends"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
-
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
-
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
-
-<div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
+<div class="post-body">
+   <div id="links">
+      <style>
+         .links-content{
+         margin-top:1rem;
+         }
+         .link-navigation::after {
+         content: " ";
+         display: block;
+         clear: both;
+         }
+         .card {
+         width: 45%;
+         font-size: 1rem;
+         padding: 10px 20px;
+         border-radius: 4px;
+         transition-duration: 0.15s;
+         margin-bottom: 1rem;
+         display:flex;
+         }
+         .card:nth-child(odd) {
+         float: left;
+         }
+         .card:nth-child(even) {
+         float: right;
+         }
+         .card:hover {
+         transform: scale(1.1);
+         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+         }
+         .card a {
+         border:none;
+         }
+         .card .ava {
+         width: 3rem!important;
+         height: 3rem!important;
+         margin:0!important;
+         margin-right: 1em!important;
+         border-radius:4px;
+         }
+         .card .card-header {
+         font-style: italic;
+         overflow: hidden;
+         width: 100%;
+         }
+         .card .card-header a {
+         font-style: normal;
+         color: #2bbc8a;
+         font-weight: bold;
+         text-decoration: none;
+         }
+         .card .card-header a:hover {
+         color: #d480aa;
+         text-decoration: none;
+         }
+         .card .card-header .info {
+         font-style:normal;
+         color:#a3a3a3;
+         font-size:14px;
+         min-width: 0;
+         overflow: hidden;
+         white-space: nowrap;
+         }
+      </style>
+      <div class="links-content">
+         <div class="link-navigation">
+          <!-- 友链模板 -->
+          <!-- <div class="card">
+            <img class="ava" src="{avatarurl}" />
+            <div class="card-header">
+                <div>
+                  <a href="{link}">{name}</a>
+                </div>
+                <div class="info">{description}</div>
+            </div>
+          </div> -->
+          <div class="card">
+            <img class="ava" src="https://pic1.zhimg.com/v2-e97e4048eb2d12f36e2ae06d5c99fb3f_l.jpg?source=32738c0c" />
+            <div class="card-header">
+                <div>
+                  <a href="https://s0rry.cn">s0rry</a>
+                </div>
+                <div class="info">qwq</div>
+            </div>
+          </div>
+         </div>
+      </div>
+   </div>
 </div>
-
-## Tech Stack
-
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
-
-## Features
-
-Here are certain features of this site.
-
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
