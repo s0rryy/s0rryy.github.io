@@ -207,6 +207,15 @@ title: "Friends"
             </div>
           </div>
           <div class="card">
+            <img class="ava" src="https://www.fup1p1.cn/upload/2022/10/QQ%E5%9B%BE%E7%89%8720221024131344.jpg" />
+            <div class="card-header">
+                <div>
+                  <a href="https://www.fup1p1.cn/">fup1p1</a>
+                </div>
+                <div class="info">他叫傅皮皮（</div>
+            </div>
+          </div>
+          <div class="card">
             <img class="ava" src="https://cdn.nlark.com/yuque/0/2024/jpeg/23002651/1708333700748-3372e655-8e2b-42be-bbe4-265521cfe217.jpeg" />
             <div class="card-header">
                 <div>
