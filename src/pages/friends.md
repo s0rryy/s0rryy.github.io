@@ -81,7 +81,7 @@ title: "Friends"
             </div>
           </div> -->
           <div class="card">
-            <img class="ava" src="https://pic1.zhimg.com/v2-e97e4048eb2d12f36e2ae06d5c99fb3f_l.jpg?source=32738c0c" />
+            <img class="ava" src="https://cdn.nlark.com/yuque/0/2024/jpeg/23002651/1708341663229-c76b3390-f6b9-4301-97a6-3b4a91658b2b.jpeg" />
             <div class="card-header">
                 <div>
                   <a href="https://s0rry.cn">s0rry</a>
