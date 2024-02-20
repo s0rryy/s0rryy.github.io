@@ -1,0 +1,27 @@
+{
+  "recentFiles": [
+    {
+      "basename": "逆向工程核心原理笔记",
+      "path": "src/content/blog/逆向工程核心原理笔记.md"
+    },
+    {
+      "basename": "astropaper-og",
+      "path": "public/astropaper-og.jpg"
+    },
+    {
+      "basename": "AstroPaper-lighthouse-score",
+      "path": "AstroPaper-lighthouse-score.svg"
+    },
+    {
+      "basename": "README",
+      "path": "README.md"
+    },
+    {
+      "basename": "title",
+      "path": "document_template/title.md"
+    }
+  ],
+  "omittedPaths": [],
+  "maxLength": null,
+  "openType": "tab"
+}

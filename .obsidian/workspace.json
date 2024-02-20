@@ -1,0 +1,203 @@
+{
+  "main": {
+    "id": "6da8cc6cc77f4464",
+    "type": "split",
+    "children": [
+      {
+        "id": "b5d7194514f2d9a8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ba9f310dd402c77d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/content/blog/逆向工程核心原理笔记.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "4d786ba06ea3e3c3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d6689a323f1b67fc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/content/blog/逆向工程核心原理笔记.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9f9d792111dc9e10",
+    "type": "split",
+    "children": [
+      {
+        "id": "2b56d4b49c0fee60",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e9f73d1412d6a285",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "fd57d4b69781fc20",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5ea15de17acc8571",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "16c40057e1e1b087",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "52e5fce033936b4b",
+    "type": "split",
+    "children": [
+      {
+        "id": "1d23c693274bd143",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f78cfa01b09bbcd9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "src/content/blog/逆向工程核心原理笔记.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "db7a767df8cda4d2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "src/content/blog/逆向工程核心原理笔记.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4ae154f02eadc7f6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "31481e2440780d24",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "src/content/blog/逆向工程核心原理笔记.md"
+              }
+            }
+          },
+          {
+            "id": "f399d42af157371b",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "d6689a323f1b67fc",
+  "lastOpenFiles": [
+    "src/content/blog/adding-new-post.md",
+    "src/content/blog/逆向工程核心原理笔记.md",
+    "src/content/blog/未命名.canvas",
+    "src/content/blog/2024-02-20.md",
+    "public/astropaper-og.jpg",
+    "AstroPaper-lighthouse-score.svg",
+    "README.md",
+    "document_template/title.md",
+    "document_template/新建文本文档.txt",
+    "document_template",
+    "新建文件夹",
+    "2024-02-20.md",
+    "未命名.canvas",
+    "node_modules/table/node_modules/is-fullwidth-code-point/readme.md",
+    "node_modules/commander/Readme.md"
+  ]
+}
