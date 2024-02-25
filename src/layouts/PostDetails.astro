@@ -113,7 +113,8 @@ const layoutProps = {
 
 <script is:inline>
   /** Create a progress indicator
-   *  at the top */
+   *  at the top
+   *  进度调显示  */
   function createProgressBar() {
     // Create the main container div
     const progressContainer = document.createElement("div");
@@ -134,7 +135,8 @@ const layoutProps = {
   createProgressBar();
 
   /** Update the progress bar
-   *  when user scrolls */
+   *  when user scrolls
+   *  下滑条*/
   function updateScrollProgress() {
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
@@ -152,20 +154,69 @@ const layoutProps = {
   document.addEventListener("scroll", updateScrollProgress);
 
   /** Attaches links to headings in the document,
-   *  allowing sharing of sections easily */
+   *  allowing sharing of sections easily
+   *  添加链接，使得用户可以方便地分享各个部分*/
   function addHeadingLinks() {
-    let headings = Array.from(document.querySelectorAll("h2, h3, h4, h5, h6"));
+    // let headings = Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6"));
+    // for (let heading of headings) {
+    //   heading.classList.add("group");
+    //   let link = document.createElement("a");
+    //   link.innerText = "#";
+    //   link.className = "heading-link hidden group-hover:inline-block ml-2";
+    //   link.href = "#" + heading.id;
+    //   link.ariaHidden = "true";
+    //   heading.appendChild(link);
+    // }
+    let headings = Array.from(
+      document.querySelectorAll("h1, h2, h3, h4, h5, h6")
+    );
     for (let heading of headings) {
       heading.classList.add("group");
       let link = document.createElement("a");
-      link.innerText = "#";
+
+      // Determine the number of "#" based on the heading level
+      let level = parseInt(heading.tagName.slice(1));
+      link.innerText = "#".repeat(level);
+
       link.className = "heading-link hidden group-hover:inline-block ml-2";
-      link.href = "#" + heading.id;
+      link.href = "#".repeat(level) + heading.id;
       link.ariaHidden = "true";
       heading.appendChild(link);
     }
   }
   addHeadingLinks();
+
+  /** 创建一个标题侧边栏
+   *  */
+  function createSidebar() {
+    // Create the sidebar container
+    const sidebar = document.createElement("div");
+    sidebar.className =
+      "shadow-lg  rounded-lg sidebar fixed right-0 top-1/3 h-1/3 w-1/6 top-20 bg-white overflow-auto text-overflow-ellipsis whitespace-nowrap my-4 py-2 px-2 bg-skin-card toc_container";
+
+    // Get all headings
+    let headings = Array.from(document.querySelectorAll("h1, h2, h3"));
+
+    // Create a link for each heading and add it to the sidebar
+    for (let heading of headings) {
+      let link = document.createElement("a");
+
+      // Determine the indentation based on the heading level
+      let level = parseInt(heading.tagName.slice(1));
+      link.style.paddingLeft = level * 20 + "px";
+
+      link.innerText = heading.innerText;
+      link.href = "#" + heading.id;
+
+      // Append the link and a line break to the sidebar
+      sidebar.appendChild(link);
+      sidebar.appendChild(document.createElement("br"));
+    }
+
+    // Append the sidebar to the document body
+    document.body.appendChild(sidebar);
+  }
+  // createSidebar();
 
   /** Attaches copy buttons to code blocks in the document,
    * allowing users to copy code easily. */
@@ -219,3 +270,38 @@ const layoutProps = {
   }
   backToTop();
 </script>
+
+<style>
+  /* 标题 */
+  .sidebar {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .post-title:hover {
+    outline: 0;
+    color: #cc7a00;
+    text-shadow: 1px 1px 1px #ffd147;
+  }
+
+  .toc_container {
+    overflow-y: scroll;
+    /* webkit */
+    /* firefox */
+    scrollbar-width: none;
+    /* ie */
+    -ms-overflow-style: none;
+  }
+
+  .toc_container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .toc_container a {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+</style>

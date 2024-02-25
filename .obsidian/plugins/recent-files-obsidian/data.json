@@ -1,8 +1,104 @@
 {
   "recentFiles": [
     {
+      "basename": "binaryNJ脚本以及Ida脚本 vscode调试",
+      "path": "src/content/blog/binaryNJ脚本以及Ida脚本 vscode调试.md"
+    },
+    {
+      "basename": "image-1688101935027.png",
+      "path": "upload/2023/06/image-1688101935027.png.md"
+    },
+    {
+      "basename": "虚拟化技术",
+      "path": "src/content/blog/虚拟化技术.md"
+    },
+    {
+      "basename": "Windows 保护模式",
+      "path": "src/content/blog/Windows 保护模式.md"
+    },
+    {
+      "basename": "进程重影",
+      "path": "src/content/blog/进程重影.md"
+    },
+    {
+      "basename": "unicorn的相关函数学习",
+      "path": "src/content/blog/unicorn的相关函数学习.md"
+    },
+    {
+      "basename": "ollvm总结",
+      "path": "src/content/blog/ollvm总结.md"
+    },
+    {
+      "basename": "Pixel2 AOSP10编译并安装以及各个镜像的相关作用",
+      "path": "src/content/blog/Pixel2 AOSP10编译并安装以及各个镜像的相关作用.md"
+    },
+    {
+      "basename": "PLT表和GOT表",
+      "path": "src/content/blog/PLT表和GOT表.md"
+    },
+    {
+      "basename": "Duilib界面库",
+      "path": "src/content/blog/Duilib界面库.md"
+    },
+    {
+      "basename": "Python逆向脚本编写",
+      "path": "src/content/blog/Python逆向脚本编写.md"
+    },
+    {
+      "basename": "异常处理原理及栈展开相关操作",
+      "path": "src/content/blog/异常处理原理及栈展开相关操作.md"
+    },
+    {
+      "basename": "C++ 面向对象与STL库容器学习笔记",
+      "path": "src/content/blog/C++ 面向对象与STL库容器学习笔记.md"
+    },
+    {
+      "basename": "浅谈Electron框架逆向",
+      "path": "src/content/blog/浅谈Electron框架逆向.md"
+    },
+    {
       "basename": "逆向工程核心原理笔记",
       "path": "src/content/blog/逆向工程核心原理笔记.md"
+    },
+    {
+      "basename": "2022-SUSCTF Login复现",
+      "path": "src/content/blog/2022-SUSCTF Login复现.md"
+    },
+    {
+      "basename": "Python虚拟环境",
+      "path": "src/content/blog/Python虚拟环境.md"
+    },
+    {
+      "basename": "2022-DASCTF April",
+      "path": "src/content/blog/2022-DASCTF April.md"
+    },
+    {
+      "basename": "2022-D3CTF",
+      "path": "src/content/blog/2022-D3CTF.md"
+    },
+    {
+      "basename": "腾讯游戏安全竞赛2021 PC初赛",
+      "path": "src/content/blog/腾讯游戏安全竞赛2021 PC初赛.md"
+    },
+    {
+      "basename": "天堂之门(Heaven's Gate)",
+      "path": "src/content/blog/天堂之门(Heaven's Gate).md"
+    },
+    {
+      "basename": "010Editor 破解",
+      "path": "src/content/blog/010Editor 破解.md"
+    },
+    {
+      "basename": "2022-StarCTF",
+      "path": "src/content/blog/2022-StarCTF.md"
+    },
+    {
+      "basename": "2022-VNCTF-Re",
+      "path": "src/content/blog/2022-VNCTF-Re.md"
+    },
+    {
+      "basename": "title",
+      "path": "document_template/title.md"
     },
     {
       "basename": "astropaper-og",
@@ -15,10 +111,6 @@
     {
       "basename": "README",
       "path": "README.md"
-    },
-    {
-      "basename": "title",
-      "path": "document_template/title.md"
     }
   ],
   "omittedPaths": [],
