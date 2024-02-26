@@ -169,14 +169,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/blog/binaryNJ脚本以及Ida脚本 vscode调试.md",
+                "file": "src/content/blog/010Editor 破解.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "794bd23ec22bd5d7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/content/blog/eBPF 学习.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 13
+        "currentTab": 14
       }
     ],
     "direction": "vertical"
@@ -250,7 +262,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/content/blog/binaryNJ脚本以及Ida脚本 vscode调试.md",
+                "file": "src/content/blog/eBPF 学习.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -267,7 +279,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "src/content/blog/binaryNJ脚本以及Ida脚本 vscode调试.md",
+                "file": "src/content/blog/eBPF 学习.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -290,7 +302,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/content/blog/binaryNJ脚本以及Ida脚本 vscode调试.md"
+                "file": "src/content/blog/eBPF 学习.md"
               }
             }
           },
@@ -319,10 +331,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "a1ab967525b0af06",
+  "active": "794bd23ec22bd5d7",
   "lastOpenFiles": [
-    "upload/2023/06/image-1688101935027.png.md",
+    "src/content/blog/010Editor 破解.md",
+    "src/content/blog/eBPF 学习.md",
     "src/content/blog/binaryNJ脚本以及Ida脚本 vscode调试.md",
+    "upload/2023/06/image-1688101935027.png.md",
     "upload/2023/06",
     "upload/2023",
     "upload",
@@ -345,11 +359,9 @@
     "src/content/blog/2022-D3CTF.md",
     "src/content/blog/腾讯游戏安全竞赛2021 PC初赛.md",
     "src/content/blog/天堂之门(Heaven's Gate).md",
-    "src/content/blog/010Editor 破解.md",
     "src/content/blog/2022-StarCTF.md",
     "src/content/blog/2022-VNCTF-Re.md",
     "document_template/title.md",
-    "src/content/blog/adding-new-post.md",
     "src/content/blog/未命名.canvas",
     "public/astropaper-og.jpg",
     "AstroPaper-lighthouse-score.svg",
