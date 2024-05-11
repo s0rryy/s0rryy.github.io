@@ -186,9 +186,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "e4230f9df0aa2fea",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.5.8"
+              }
+            }
           }
         ],
-        "currentTab": 14
+        "currentTab": 15
       }
     ],
     "direction": "vertical"
@@ -331,7 +341,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "794bd23ec22bd5d7",
+  "active": "e4230f9df0aa2fea",
   "lastOpenFiles": [
     "src/content/blog/010Editor 破解.md",
     "src/content/blog/eBPF 学习.md",

@@ -216,6 +216,15 @@ title: "Friends"
             </div>
           </div>
           <div class="card">
+            <img class="ava" src="https://s1.locimg.com/2024/05/11/840b1bca24d25.jpeg" />
+            <div class="card-header">
+                <div>
+                  <a href="https://infernity.top/">infernity</a>
+                </div>
+                <div class="info">厉害的学弟，我们叫他鸡哥</div>
+            </div>
+          </div>
+          <div class="card">
             <img class="ava" src="https://cdn.nlark.com/yuque/0/2024/jpeg/23002651/1708333700748-3372e655-8e2b-42be-bbe4-265521cfe217.jpeg" />
             <div class="card-header">
                 <div>
