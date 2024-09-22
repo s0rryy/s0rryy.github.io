@@ -10,13 +10,13 @@ import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SOCIALS } from "@config";
 
-const posts = await getCollection("blog");
+const posts = await getCollection("blog"); // get all posts
 
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured); // get featured posts
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured); // get recent posts
 
-const socialCount = SOCIALS.filter(social => social.active).length;
+const socialCount = SOCIALS.filter(social => social.active).length; // 获取社交账号数量
 ---
 
 <Layout>
@@ -42,8 +42,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       </a>
 
       <p>
-        Welcome to my personal blog. I write about web development, design, and
-        other things I find interesting. I hope you find something useful here.
+        网络安全研究员,研究逆向工程、漏洞挖掘、安全工具开发等
       </p>
       <!-- <p>
         Read the blog posts or check
@@ -55,7 +54,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </LinkButton> for more info.
       </p> -->
       {
-        // only display if at least one social link is enabled
         socialCount > 0 && (
           <div class="social-wrapper">
             <div class="social-links">Social Links:</div>
@@ -71,7 +69,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       featuredPosts.length > 0 && (
         <>
           <section id="featured">
-            <h2>Featured</h2>
+            <h2>置顶文章</h2>
             <ul>
               {featuredPosts.map(({ data, slug }) => (
                 <Card
@@ -90,7 +88,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     {
       recentPosts.length > 0 && (
         <section id="recent-posts">
-          <h2>Recent Posts</h2>
+          <h2>近期文章</h2>
           <ul>
             {recentPosts.map(
               ({ data, slug }, index) =>

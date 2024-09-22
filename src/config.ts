@@ -3,7 +3,7 @@ import type { Site, SocialObjects } from "./types";
 export const SITE: Site = {
   website: "https://s0rry.cn/", // replace this with your deployed domain
   author: "s0rry",
-  desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
+  desc: "网络安全研究员,研究逆向工程、漏洞挖掘、安全工具开发等",
   title: "s0rry's Blog",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
@@ -35,7 +35,7 @@ export const SOCIALS: SocialObjects = [
     name: "Bilibili",
     href: "https://space.bilibili.com/38761787",
     linkTitle: `${SITE.title} on Bilibili`,
-    active: true,
+    active: false,
   },
   {
     name: "Instagram",
