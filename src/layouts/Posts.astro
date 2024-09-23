@@ -16,7 +16,7 @@ export interface Props {
 
 const { currentPage, totalPages, paginatedPosts } = Astro.props;
 ---
-
+<meta name="referrer" content="never">
 <Layout title={`Posts | ${SITE.title}`}>
   <Header activeNav="posts" />
   <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
