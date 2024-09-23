@@ -185,38 +185,44 @@ const layoutProps = {
     }
   }
   addHeadingLinks();
-
-  /** 创建一个标题侧边栏
-   *  */
+  
   function createSidebar() {
-    // Create the sidebar container
-    const sidebar = document.createElement("div");
-    sidebar.className =
-      "shadow-lg  rounded-lg sidebar fixed right-0 top-1/3 h-1/3 w-1/6 top-20 bg-white overflow-auto text-overflow-ellipsis whitespace-nowrap my-4 py-2 px-2 bg-skin-card toc_container";
-
-    // Get all headings
-    let headings = Array.from(document.querySelectorAll("h1, h2, h3"));
-
-    // Create a link for each heading and add it to the sidebar
-    for (let heading of headings) {
-      let link = document.createElement("a");
-
-      // Determine the indentation based on the heading level
-      let level = parseInt(heading.tagName.slice(1));
-      link.style.paddingLeft = level * 20 + "px";
-
-      link.innerText = heading.innerText;
-      link.href = "#" + heading.id;
-
-      // Append the link and a line break to the sidebar
-      sidebar.appendChild(link);
-      sidebar.appendChild(document.createElement("br"));
+    // 检查设备宽度，如果小于1424px则不生成侧边栏
+    if (window.innerWidth < 1424) {
+      // console.log("手机设备，不生成侧边栏");
+      return;
+    }else{
+      // 创建一个 div 元素，用于作为侧边栏的容器，并存储在变量 sidebar 中
+      const sidebar = document.createElement("div");
+      // 为 sidebar 设置 CSS 类名，包含了固定位置、外边距、内边距、背景色等
+      sidebar.className = 
+        "shadow-lg rounded-lg fixed right-0 top-20 my-4 py-2 px-2 bg-white overflow-auto";
+      // 设置 sidebar 的最大高度，并允许垂直滚动
+      sidebar.style.maxHeight = "70vh"; // 高度限制为 70% 的视口高度
+      sidebar.style.overflowY = "auto"; // 超出部分允许垂直滚动
+      // 获取所有的标题元素（h1, h2, h3, h4）
+      let headings = Array.from(document.querySelectorAll("h1, h2, h3, h4"));
+      // 为每个标题创建一个链接并添加到侧边栏
+      for (let heading of headings) {
+        let link = document.createElement("a");
+        // 根据标题级别设置缩进
+        let level = parseInt(heading.tagName.slice(1));
+        link.style.paddingLeft = level * 20 + "px";
+        // 设置链接的文字内容为标题文本
+        link.innerText = heading.innerText;
+        // 如果标题有 id，则设置为链接的 href
+        if (heading.id != "") {
+          link.href = "#" + heading.id;
+        }
+        // 将链接和换行符添加到侧边栏
+        sidebar.appendChild(link);
+        sidebar.appendChild(document.createElement("br"));
+      }
+      // 将侧边栏添加到页面主体
+      document.body.appendChild(sidebar);
     }
-
-    // Append the sidebar to the document body
-    document.body.appendChild(sidebar);
   }
-  // createSidebar();
+  createSidebar();
 
   /** Attaches copy buttons to code blocks in the document,
    * allowing users to copy code easily. */
